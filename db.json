@@ -1,0 +1,32 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "name": "Oliver Twist",
+      "author": "Charles Dickens",
+      "category": "novel",
+      "image": "oliver.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Les Misérables",
+      "author": "Victor Hugo",
+      "category": "novel",
+      "image": "hugo.jpg"
+    },
+    {
+      "id": 3,
+      "name": "The Count of Monte Cristo",
+      "author": "Alexandre Dumas",
+      "category": "Roman",
+      "image": "monte.jpg"
+    },
+    {
+      "id": 4,
+      "name": "The Grapes of Wrath",
+      "author": "John Steinbeck",
+      "category": "Drama",
+      "image": "grapes.jpg"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button onclick="nextBook()">next</button>
+    <button onclick="prevBook()">prev</button>
+    <button onclick="firstBook()">first</button>
+    <button onclick="lastBook()">last</button>
+    <button onclick="resetData()">reset</button>
+    <button onclick="showAll()">show all</button>
+    <button onclick="showAllAD()">show all upside doun</button>
+
+    <div id=display></div>
+    <img id="bookImage" src=" " alt="Book Image">
+    <div id="pos"></div>
+
+    <script>
+
+        let books = []
+        let index = 0
+        async function getdata() {
+            let server = "http://localhost:3000/books"
+            books = await fetch(server)
+                .then(response => response.json())
+            console.table(books)
+            localStorage.setItem('booksData', JSON.stringify(books));
+            updateDisplay()
+        }
+        function updateDisplay() {
+            const display = document.getElementById("display"); // Get the display element
+            display.innerHTML = books[index % books.length].name + "<br>" + " by " + books[index % books.length].author + "<br>" + " category: " + books[index % books.length].category;
+            bookImage.src = books[index % books.length].image
+            position()
+        }
+
+        function nextBook() {
+            index = index < books.length - 1 ? ++index : books.length - 1
+            updateDisplay()
+        }
+        function prevBook() {
+            index = index > 0 ? --index : 0
+            updateDisplay()
+        }
+        function firstBook() {
+            index = 0
+            updateDisplay()
+        }
+        function lastBook() {
+            index = books.length - 1
+            updateDisplay()
+        }
+        function resetData() {
+            localStorage.removeItem('booksData');
+            window.location.reload();
+        }
+        // function showAll() {
+        //     for (let index = 0; index < books.length; index++) {
+
+        //             updateDisplay();
+        //      }
+        // }
+        //         async function showAll() {
+        //     for (let i = 0; i < books.length; i++) {
+        //         index = i; // Set the index to the current book's index
+        //         updateDisplay();
+        //         await delay(1000); // Wait for the specified delay before showing the next book
+        //     }
+        // }
+
+        // function delay(ms) {
+        //     return new Promise(resolve => setTimeout(resolve, ms));
+        // }
+        function showAll() {
+            let List = '';
+             for (let i = 0; i < books.length; i++) {
+                book = books[i];
+                List += `${book.name} by ${book.author} (Category: ${book.category})<br><img src="${book.image}"><br><hr>`;
+            }
+            display.innerHTML = List;
+        }
+        function showAllAD() {
+            let List = '';
+             for (let i = books.length-1; i > 0; i--) {
+                book = books[i];
+                List += `${book.name} by ${book.author} (Category: ${book.category})<br><img src="${book.image}"><br><hr>`;
+            }
+            display.innerHTML = List;
+        }
+
+
+
+
+
+        getdata()
+
+        function position() {
+            pos.innerHTML = `${index + 1}/${books.length}`
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
