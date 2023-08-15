@@ -34,7 +34,6 @@
             updateDisplay()
         }
         function updateDisplay() {
-            const display = document.getElementById("display"); // Get the display element
             display.innerHTML = books[index % books.length].name + "<br>" + " by " + books[index % books.length].author + "<br>" + " category: " + books[index % books.length].category;
             bookImage.src = books[index % books.length].image
             position()
@@ -60,26 +59,9 @@
             localStorage.removeItem('booksData');
             window.location.reload();
         }
-        // function showAll() {
-        //     for (let index = 0; index < books.length; index++) {
-
-        //             updateDisplay();
-        //      }
-        // }
-        //         async function showAll() {
-        //     for (let i = 0; i < books.length; i++) {
-        //         index = i; // Set the index to the current book's index
-        //         updateDisplay();
-        //         await delay(1000); // Wait for the specified delay before showing the next book
-        //     }
-        // }
-
-        // function delay(ms) {
-        //     return new Promise(resolve => setTimeout(resolve, ms));
-        // }
-        function showAll() {
+         function showAll() {
             let List = '';
-             for (let i = 0; i < books.length; i++) {
+            for (let i = 0; i < books.length; i++) {
                 book = books[i];
                 List += `${book.name} by ${book.author} (Category: ${book.category})<br><img src="${book.image}"><br><hr>`;
             }
@@ -87,7 +69,7 @@
         }
         function showAllAD() {
             let List = '';
-             for (let i = books.length-1; i > 0; i--) {
+            for (let i = books.length - 1; i > 0; i--) {
                 book = books[i];
                 List += `${book.name} by ${book.author} (Category: ${book.category})<br><img src="${book.image}"><br><hr>`;
             }
